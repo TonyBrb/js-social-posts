@@ -56,4 +56,60 @@ const posts = [
     }
 ];
 
-const postContainer = document
+  document.getElementById('container').innerHTML = '';
+
+
+  for(let persona of posts){
+    addPost(persona);
+  }
+
+function addPost(persona){
+
+    const postContainer = document.getElementById('container');
+    
+    let post = postContainer.innerHTML;
+
+    const {id, content, media, author, likes, created} = persona;
+    let data = reverseDate(created);
+    
+    post += 
+    `
+        <div class="post">
+                <div class="post__header">
+                    <div class="post-meta">                    
+                        <div class="post-meta__icon">
+                            <img class="profile-pic" src=${author.image} alt="${author.name}">                    
+                        </div>
+                        <div class="post-meta__data">
+                            <div class="post-meta__author">${author.name}</div>
+                            <div class="post-meta__time">${data}</div>
+                        </div>                    
+                    </div>
+                </div>
+                <div class="post__text">${content}</div>
+                <div class="post__image">
+                    <img src="${media}" alt="">
+                </div>
+                <div class="post__footer">
+                    <div class="likes js-likes">
+                        <div class="likes__cta">
+                            <a class="like-button  js-like-button" href="#" data-postid="${id}">
+                                <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                                <span class="like-button__label">Mi Piace</span>
+                            </a>
+                        </div>
+                        <div class="likes__counter">
+                            Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                        </div>
+                    </div> 
+                </div>            
+            </div>
+    `;
+    
+    postContainer.innerHTML = post;
+}
+
+function reverseDate(date) {
+    date = date.split("-").reverse().join("-");
+    return date;
+}
