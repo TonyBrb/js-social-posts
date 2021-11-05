@@ -113,3 +113,17 @@ function reverseDate(date) {
     date = date.split("-").reverse().join("-");
     return date;
 }
+
+
+//BONUS
+
+const miPiace = document.querySelectorAll('.likes__cta');
+const liked = document.querySelectorAll('.like-button');
+for(let i=0; i<miPiace.length; i++){
+    miPiace[i].addEventListener('click',function incrementaMiPiace(){
+    const contatore = document.querySelectorAll('.js-likes-counter');
+    contatore[i].innerText = parseInt(contatore[i].innerText)+1;
+    liked[i].classList.add('like-button--liked');
+    });
+}
+
